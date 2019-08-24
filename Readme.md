@@ -17,7 +17,7 @@ Luego de esto, el programa empezara a ejecutar el entrenamiento. Al finalizar se
 3- Reconocimiento Facial:
 Una vez que el programa este entrenado, podemos realizar nuestro primer proceso de reconocimiento facial. Todo lo que tenemos que hacer es ejecutar el siguiente comando en tu terminal en el directorio del programa:
 
-python reconocer.py --image test/maxi.jpg
+python reconocer.py --image test/matias.jpg
 
-En el comando pueden ver "test/maxi.jpg". Aquí debe ir la ruta de la imagen en la que desea reconocer rostros. En el repositorio se encuentran alguna imágenes de prueba.
+En el comando pueden ver "test/matias.jpg". Aquí debe ir la ruta de la imagen en la que desea reconocer rostros. En el repositorio se encuentran alguna imágenes de prueba.
 
