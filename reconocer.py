@@ -40,7 +40,7 @@ if __name__ == '__main__':
             # Coloca el nombre de la persona reconocida
             cv2.putText(img, "{}".format(recognizer.getLabelInfo(label)), (x, y-5), font, 1, (0,255,0), 1, cv2.LINE_AA)
 
-        # Indica el nombre de la persona reconocida en la imagen pasada por parámetro
+        # Indica el nombre de la persona reconocida en la imagen pasada por parametro
         print("Rostro Reconocido: %s" % (recognizer.getLabelInfo(label)))
         # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
         cv2.imshow("Reconocimiento Facial", img)
