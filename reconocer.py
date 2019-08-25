@@ -14,6 +14,8 @@ def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
     return found_faces
 
 if __name__ == '__main__':
+
+    # Lee argumentos
     ap = argparse.ArgumentParser()
     ap.add_argument("-i", "--image", required = True,
     help = "Ruta de la imagen para reconocer")
@@ -23,10 +25,12 @@ if __name__ == '__main__':
     eyeCascade = cv2.CascadeClassifier('cascades/haarcascade_eye.xml')
     faceSize = config.DEFAULT_FACE_SIZE
     threshold = 500
+    
     recognizer = train.trainRecognizer('train', faceSize, showFaces=True)
 
-    # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
-    cv2.namedWindow("Reconocimiento Facial", 1)
+    # Crea la ventana con el nombre 'Reconocimiento Facial!' y la imagen a reconocer
+    cv2.namedWindow("Reconocimiento Facial!", 1)
+    # Pasa como parametro la imagen recibida como argumento
     capture = cv2.imread(args["image"])
 
     # Inicia bucle
