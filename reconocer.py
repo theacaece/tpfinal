@@ -34,9 +34,13 @@ if __name__ == '__main__':
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
             cv2.putText(img, "{}".format(recognizer.getLabelInfo(label)), (x, y-5), font, 1, (0,255,0), 1, cv2.LINE_AA)
 
-        print("Rostro reconocido: %s" % (recognizer.getLabelInfo(label)))
+        print("Rostro Reconocido: %s" % (recognizer.getLabelInfo(label)))
         cv2.imshow("Reconocimiento Facial", img)
+
+        # Comprueba si se ha pulsado la tecla 'Esc'
         ch = cv2.waitKey(0)
         if ch == 27:
             break
+        
+    # Si se ha roto el bucle, destruye ventana y finaliza programa
     cv.destroyAllWindows()
