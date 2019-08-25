@@ -34,13 +34,15 @@ if __name__ == '__main__':
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
             cv2.putText(img, "{}".format(recognizer.getLabelInfo(label)), (x, y-5), font, 1, (0,255,0), 1, cv2.LINE_AA)
 
+        # Indico el nombre de la persona reconocida en la imagen pasada por parámetro
         print("Rostro Reconocido: %s" % (recognizer.getLabelInfo(label)))
+        # Creo la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
         cv2.imshow("Reconocimiento Facial", img)
 
-        # Comprueba si se ha pulsado la tecla 'Esc'
+        # Comprueba si se ha pulsado la tecla 'Esc' para salir del bucle
         ch = cv2.waitKey(0)
         if ch == 27:
             break
         
-    # Si se ha roto el bucle, destruye ventana y finaliza programa
+    # Si se ha salido del bucle, destruye la ventana y finaliza el programa
     cv.destroyAllWindows()
