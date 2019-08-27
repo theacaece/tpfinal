@@ -28,13 +28,19 @@ if __name__ == '__main__':
     
     recognizer = train.trainRecognizer('train', faceSize, showFaces=True)
 
-    # Crea la ventana con el nombre 'Reconocimiento Facial!' y la imagen a reconocer
-    cv2.namedWindow("Reconocimiento Facial!", 1)
+    # Crea la ventana con el nombre 'Reconocimiento Facial!'
+    # cv2.namedWindow("Reconocimiento Facial!", 1)
     # Pasa como parametro la imagen recibida como argumento
     capture = cv2.imread(args["image"])
 
     # Inicia bucle
     while True:
+        if args["image"] is None:
+            print("La ruta de la imagen se ingreso de forma incorrecta")
+        if capture is None:
+            print("La ruta de la imagen indicada no existe")
+            break
+        label =""
         img = imutils.resize(capture, height=500)
         # Busca el nombre de la persona del rostro que esta en la imagen
         for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
@@ -43,16 +49,22 @@ if __name__ == '__main__':
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
             # Coloca el nombre de la persona reconocida
             cv2.putText(img, "{}".format(recognizer.getLabelInfo(label)), (x, y-5), font, 1, (0,255,0), 1, cv2.LINE_AA)
-
+            
         # Indica el nombre de la persona reconocida en la imagen pasada por parametro
-        print("Rostro Reconocido: %s" % (recognizer.getLabelInfo(label)))
+        titulo_ventana = "Rostro No Encontrado"
+        if label != "":
+            titulo_ventana = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
+
+        print(titulo_ventana)
+        
         # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
         cv2.imshow("Reconocimiento Facial", img)
-
-        # Comprueba si se ha pulsado la tecla 'Esc' para salir del bucle
+        # Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
         ch = cv2.waitKey(0)
-        if ch == 27:
+        # 32 es el simbolo del espacio
+        if ch == 32:
             break
         
     # Si se ha salido del bucle, destruye la ventana y finaliza el programa
-    cv.destroyAllWindows()
+    cv2.destroyAllWindows()
+    
