@@ -57,7 +57,7 @@ if __name__ == '__main__':
 
 
     while True:
-        img = cv2.imread('test/barack.jpg')
+        img = cv2.imread('test/messi.png')
         image, face_dim = detectFaces(img, faceCascade, eyeCascade, False)
         for ((x, y, w, h), eye_dim) in face_dim:
             cv2.rectangle(image, (x, y), (x+w, y+h), (255, 0, 0), 2)
