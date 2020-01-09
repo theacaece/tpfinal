@@ -13,6 +13,42 @@ def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
 
     return found_faces
 
+def reconocer(imagePath):
+
+    # Lee argumentos
+    faceCascade = cv2.CascadeClassifier('cascades/face.xml')
+    eyeCascade = cv2.CascadeClassifier('cascades/haarcascade_eye.xml')
+    faceSize = config.DEFAULT_FACE_SIZE
+    threshold = 500
+    
+    recognizer = train.trainRecognizer('train', faceSize, showFaces=True)
+
+    # Crea la ventana con el nombre 'Reconocimiento Facial!'
+    # cv2.namedWindow("Reconocimiento Facial!", 1)
+    # Pasa como parametro la imagen recibida como argumento
+    capture = cv2.imread(imagePath)
+
+    if imagePath is None:
+      print("La ruta de la imagen se ingreso de forma incorrecta")
+      return "La ruta de la imagen se ingreso de forma incorrecta"
+    if capture is None:
+      print("La ruta de la imagen indicada no existe")
+      return "La ruta de la imagen indicada no existe"
+    label =""
+
+    img = imutils.resize(capture, height=500)
+    for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
+      print(label)
+
+    result = "Rostro No Encontrado"
+    if label != "":
+     result = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
+    else:
+      result = "Rostro No Encontrado"
+    
+    return result
+
+
 if __name__ == '__main__':
 
     # Lee argumentos
