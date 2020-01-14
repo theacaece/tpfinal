@@ -91,14 +91,13 @@ if __name__ == '__main__':
         titulo_ventana = "Rostro No Encontrado"
         if label != "":
             titulo_ventana = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
-	print(titulo_ventana)
-	# Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
-	cv2.imshow("Reconocimiento Facial", img)
-	# Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
-	ch = cv2.waitKey(0)
-	# 32 es el simbolo del espacio
-	if ch == 32:
-            break
-        
+        print(titulo_ventana)
+        # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
+        cv2.imshow("Reconocimiento Facial", img)
+	      # Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
+        ch = cv2.waitKey(0)
+	      # 32 es el simbolo del espacio
+        if ch == 32:
+          break
     # Si se ha salido del bucle, destruye la ventana y finaliza el programa
     cv2.destroyAllWindows()

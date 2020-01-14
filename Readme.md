@@ -29,7 +29,7 @@ http://dreamsyssoft.com/python-scripting-tutorial/create-simple-rest-web-service
 
 Se creo el web service en rest_server.py
 
-para correr, simplemente colocar en el shell : python2 rest_server.py
+para correr, simplemente colocar en el shell : python3 rest_server.py
 
 Ejemplo de uso : 
   ir a la url http://localhost:8080/reconocedor/matias
@@ -46,5 +46,5 @@ Errores al utilizar la librería cv2
 # En caso de tener el error : "AttributeError: 'module' object has no attribute 'face'"
 http://acodigo.blogspot.com/2017/06/instalar-opencv-en-python.html
 Reinstalar la dependencia de python de opencv2
-pip2 uninstall opencv-python
-pip2 install opencv-contrib-python
+pip3 uninstall opencv-python
+pip3 install opencv-contrib-python
