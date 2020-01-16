@@ -1,5 +1,6 @@
 import cv2
 import train, detect, config, imutils, argparse
+import json
 
 # Funcion que reconoce imagen pasada por parametro
 def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
@@ -37,16 +38,17 @@ def reconocer(imagePath):
     label =""
 
     img = imutils.resize(capture, height=500)
+    results = []
     for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
+      results.append({
+      "label": recognizer.getLabelInfo(label),
+      "confidence" : confidence#,
+#      "coordinates" : { "x": x, "y": y, "width": w, "height": h }
+      })
       print(label)
+    result = {"results" : results}
 
-    result = "Rostro No Encontrado"
-    if label != "":
-     result = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
-    else:
-      result = "Rostro No Encontrado"
-    
-    return result
+    return json.dumps(result)
 
 
 if __name__ == '__main__':
