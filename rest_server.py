@@ -11,11 +11,15 @@ urls = (
 app = web.application(urls, globals())
 
 class reconocer_imagen:
-    def GET(self, imageName):
-        web.header('Content-Type', 'application/json')
-        print("test/" + imageName + "jpeg")
-        result = recon.reconocer("test/" + imageName + ".jpeg")
+    def POST(self, dato):
+        image = web.data() #.read()
+
+        print(type(image))
+        
+        result = recon.reconocer(image)
+
         print(result)
+        web.header('Content-Type', 'application/json')
         return result
 
 if __name__ == "__main__":

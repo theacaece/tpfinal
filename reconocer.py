@@ -1,6 +1,7 @@
 import cv2
 import train, detect, config, imutils, argparse
 import json
+import numpy
 
 # Funcion que reconoce imagen pasada por parametro
 def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
@@ -14,7 +15,7 @@ def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
 
     return found_faces
 
-def reconocer(imagePath):
+def reconocer(image):
 
     # Lee argumentos
     faceCascade = cv2.CascadeClassifier('cascades/face.xml')
@@ -27,15 +28,8 @@ def reconocer(imagePath):
     # Crea la ventana con el nombre 'Reconocimiento Facial!'
     # cv2.namedWindow("Reconocimiento Facial!", 1)
     # Pasa como parametro la imagen recibida como argumento
-    capture = cv2.imread(imagePath)
-
-    if imagePath is None:
-      print("La ruta de la imagen se ingreso de forma incorrecta")
-      return "La ruta de la imagen se ingreso de forma incorrecta"
-    if capture is None:
-      print("La ruta de la imagen indicada no existe")
-      return "La ruta de la imagen indicada no existe"
-    label =""
+    array = numpy.frombuffer(image, dtype='uint8')
+    capture = cv2.imdecode(array, -1)
 
     img = imutils.resize(capture, height=500)
     results = []
