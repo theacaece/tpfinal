@@ -1,5 +1,7 @@
 import cv2
 import train, detect, config, imutils, argparse
+import json
+import numpy
 
 # Funcion que reconoce imagen pasada por parametro
 def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
@@ -12,6 +14,36 @@ def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
             found_faces.append((label, confidence, (x, y, w, h)))
 
     return found_faces
+
+def reconocer(image):
+
+    # Lee argumentos
+    faceCascade = cv2.CascadeClassifier('cascades/face.xml')
+    eyeCascade = cv2.CascadeClassifier('cascades/haarcascade_eye.xml')
+    faceSize = config.DEFAULT_FACE_SIZE
+    threshold = 500
+    
+    recognizer = train.trainRecognizer('train', faceSize, showFaces=True)
+
+    # Crea la ventana con el nombre 'Reconocimiento Facial!'
+    # cv2.namedWindow("Reconocimiento Facial!", 1)
+    # Pasa como parametro la imagen recibida como argumento
+    array = numpy.frombuffer(image, dtype='uint8')
+    capture = cv2.imdecode(array, -1)
+
+    img = imutils.resize(capture, height=500)
+    results = []
+    for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
+      results.append({
+      "label": recognizer.getLabelInfo(label),
+      "confidence" : confidence#,
+#      "coordinates" : { "x": x, "y": y, "width": w, "height": h }
+      })
+      print(label)
+    result = {"results" : results}
+
+    return json.dumps(result)
+
 
 if __name__ == '__main__':
 
@@ -55,14 +87,13 @@ if __name__ == '__main__':
         titulo_ventana = "Rostro No Encontrado"
         if label != "":
             titulo_ventana = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
-	print(titulo_ventana)
-	# Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
-	cv2.imshow("Reconocimiento Facial", img)
-	# Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
-	ch = cv2.waitKey(0)
-	# 32 es el simbolo del espacio
-	if ch == 32:
-            break
-        
+        print(titulo_ventana)
+        # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
+        cv2.imshow("Reconocimiento Facial", img)
+	      # Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
+        ch = cv2.waitKey(0)
+	      # 32 es el simbolo del espacio
+        if ch == 32:
+          break
     # Si se ha salido del bucle, destruye la ventana y finaliza el programa
     cv2.destroyAllWindows()
