@@ -1,1 +1,11 @@
+*.DS_Store
+
+# Intellij #
+##########
+.idea/
+*.iml
+
+# Python #
+##########
+.pycache/
 *.pyc
