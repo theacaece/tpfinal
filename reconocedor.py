@@ -42,7 +42,7 @@ def reconocer(image):
       print(label)
     result = {"results" : results}
 
-    return json.dumps(result)
+    return result
 
 
 if __name__ == '__main__':
