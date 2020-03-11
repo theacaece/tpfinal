@@ -1,2 +1,2 @@
-python rest_server.py 8085
+python3 rest_server.py 8085
 
