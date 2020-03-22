@@ -12,7 +12,6 @@ def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
     for ((x, y, w, h), eyedim) in faces:
         label, confidence = recognizer.predict(cv2.resize(detect.levelFace(gray, ((x, y, w, h), eyedim)), faceSize))
         if confidence < threshold:
-            print(confidence)
             found_faces.append((label, confidence, (x, y, w, h)))
 
     return found_faces
@@ -37,8 +36,8 @@ def reconocer(image):
     results = []
     for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
         results.append(dict(label=recognizer.getLabelInfo(label), confidence=confidence))
-        print(label)
     result = {"results": results}
+    print(result)
     return result
 
 
@@ -85,7 +84,6 @@ if __name__ == '__main__':
         titulo_ventana = "Rostro No Encontrado"
         if label != "":
             titulo_ventana = "Rostro Reconocido: %s" % (recognizer.getLabelInfo(label))
-        print(titulo_ventana)
         # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
         cv2.imshow("Reconocimiento Facial", img)
         # Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
