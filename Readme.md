@@ -1,4 +1,5 @@
-# THEA - Reconocimiento
+# THEA - Reconocimientoç
+
 THEA - Reconocimiento es un software escrito en Python, haciendo uso de la librería Opencv, para el reconocimiento facial.
 
 Utilizar el software es muy sencillo, solo debes seguir estos pasos:
@@ -22,28 +23,25 @@ python reconocer.py --image test/matias.jpg
 En el comando pueden ver "test/matias.jpg". Aquí debe ir la ruta de la imagen en la que desea reconocer rostros. En el repositorio se encuentran alguna imágenes de prueba.
 
 
-Web services
+# Web services
 
-Se utiliza la siguiente base para la creación del webservice, utilizando el módulo "web"
-http://dreamsyssoft.com/python-scripting-tutorial/create-simple-rest-web-service-with-python.php
+Se creó utilizando Flask el archivo python3-rest.py
+Por defecto, usa el puerto 8085.
 
-Se creo el web service en rest_server.py
+Para correr, simplemente colocar en el shell : python3 python3-rest.py
 
-para correr, simplemente colocar en el shell : python3 rest_server.py
+Actualmente hay dos rutas creadas:
 
-Ejemplo de uso : 
-  ir a la url http://localhost:8080/reconocedor/matias
-  devulve un string con el resultado del reconocimiento
-
+/reconocedor/<name> : Aqui se hace un post con la imagen desde el Backend. La respuesta es un json results que contiene label y confidence.
+  
+/entrenamiento : Aqui se hace un post para reentrenar la red neuronal.  
 
 Troubleshooting
 
-# Instalar easy_install (para instalar web module)
-https://sourcezilla.com/articulos/como-instalar-easy_install-de-python-en-windows-linux-y-mac-os-x/
+# Errores al utilizar la librería cv2
 
-Errores al utilizar la librería cv2
+En caso de tener el error : "AttributeError: 'module' object has no attribute 'face'":
 
-# En caso de tener el error : "AttributeError: 'module' object has no attribute 'face'"
 http://acodigo.blogspot.com/2017/06/instalar-opencv-en-python.html
 Reinstalar la dependencia de python de opencv2
 pip3 uninstall opencv-python
