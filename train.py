@@ -55,7 +55,6 @@ def trainRecognizer(db_folder, trainSize=config.DEFAULT_FACE_SIZE, showFaces=Fal
     print("Arrancando entrenamiento...")
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     if (not forceTrain) and loadRecognizer(recognizer):
-        print("Entró a este if")
         return recognizer
 
     folders = getLabels(db_folder)
