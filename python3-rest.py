@@ -4,6 +4,7 @@ import reconocedor as recon
 from flask import Flask
 from flask import request
 from flask import jsonify
+from train import trainRecognizer
 from PIL import Image
 import io
 
@@ -13,6 +14,13 @@ app = Flask(__name__)
 def reconocer_service(name):
     result = recon.reconocer(request.data)
     return jsonify(result)
+
+@app.route("/entrenamiento",methods=['POST'])
+def entrenamiento_service():
+    trainRecognizer('train', showFaces=False, forceTrain=True)
+    result = "Entrenamiento: OK"
+    print(result)
+    return result
 
 if __name__ == '__main__':
 #DEBUG    app.run(debug=True)

@@ -52,8 +52,10 @@ def extractFaces(a_dir, folder, levelFace=False):
     return result
 
 def trainRecognizer(db_folder, trainSize=config.DEFAULT_FACE_SIZE, showFaces=False, forceTrain=False):
+    print("Arrancando entrenamiento...")
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     if (not forceTrain) and loadRecognizer(recognizer):
+        print("Entró a este if")
         return recognizer
 
     folders = getLabels(db_folder)
@@ -62,7 +64,6 @@ def trainRecognizer(db_folder, trainSize=config.DEFAULT_FACE_SIZE, showFaces=Fal
 
     label_count = 0
     label_map = {}
-
     for folder in folders:
         faces = extractFaces(db_folder, folder, True)
         images.extend([cv2.resize(face, trainSize) for face in faces])
