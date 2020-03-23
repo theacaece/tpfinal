@@ -52,7 +52,6 @@ def extractFaces(a_dir, folder, levelFace=False):
     return result
 
 def trainRecognizer(db_folder, trainSize=config.DEFAULT_FACE_SIZE, showFaces=False, forceTrain=False):
-    print("Arrancando entrenamiento...")
     recognizer = cv2.face.LBPHFaceRecognizer_create()
     if (not forceTrain) and loadRecognizer(recognizer):
         return recognizer
