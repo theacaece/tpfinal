@@ -7,8 +7,12 @@ from flask import jsonify
 from train import trainRecognizer
 from PIL import Image
 import io
+from flask_cors import CORS, cross_origin
+
+
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route("/reconocedor/<name>",methods=['POST'])
 def reconocer_service(name):
