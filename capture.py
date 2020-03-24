@@ -30,7 +30,7 @@ count = 0
 while count < 100:
     #leemos un frame y lo guardamos
     rval, img = cap.read()
-    img = cv2.flip(img, 1, 0)
+    #img = cv2.flip(img, 1, 0)
 
     #convertimos la imagen a blanco y negro
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -44,15 +44,15 @@ while count < 100:
     faces = sorted(faces, key=lambda x: x[3])
     
     if faces:
-        face_i = faces[0]
-        (x, y, w, h) = [v * size for v in face_i]
-        face = gray[y:y + h, x:x + w]
-        face_resize = cv2.resize(face, (img_width, img_height))
+        #face_i = faces[0]
+        #(x, y, w, h) = [v * size for v in face_i]
+        #face = gray[y:y + h, x:x + w]
+        #face_resize = cv2.resize(face, (img_width, img_height))
         
         #Dibujamos un rectangulo en las coordenadas del rostro
-        cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
+        #cv2.rectangle(img, (x, y), (x + w, y + h), (0, 255, 0), 3)
         #Ponemos el nombre en el rectagulo
-        cv2.putText(img, nombre, (x - 10, y - 10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))        
+        #cv2.putText(img, nombre, (x - 10, y - 10), cv2.FONT_HERSHEY_PLAIN,1,(0, 255, 0))
 
         #El nombre de cada foto es el numero del ciclo
         #Obtenemos el nombre de la foto
@@ -61,7 +61,7 @@ while count < 100:
                if n[0]!='.' ]+[0])[-1] + 1
 
         #Metemos la foto en el directorio
-        cv2.imwrite('%s/%s.png' % (path, pin), face_resize)
+        cv2.imwrite('%s/%s.png' % (path, pin), img)
 
         #Contador del ciclo
         count += 1
