@@ -11,7 +11,7 @@ def getLabels(a_dir):
     return [name for name in os.listdir(a_dir) if isdir(join(a_dir, name))]
 
 def supportedImg(name):
-    return name.lower().endswith('.png') or name.lower().endswith('.jpg')
+    return name.lower().endswith('.pmg') or name.lower().endswith('.jpg')
 
 def combineFaces(faces, w=100, h=100, numPerRow=5):
     small_img = []
