@@ -1,3 +1,13 @@
+# Requerimientos
+- Python
+- Pip
+
+Ejecutar en la carpeta donde se encuentra clonado el repo:
+pip3 freeze >> requirements.txt
+pip3 install -r requirements.txt
+
+
+
 # THEA - Reconocimiento
 
 THEA - Reconocimiento es un software escrito en Python, haciendo uso de la librería Opencv, para el reconocimiento facial.
