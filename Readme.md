@@ -4,9 +4,21 @@
 
 Ejecutar en la carpeta donde se encuentra clonado el repo:
 pip3 freeze >> requirements.txt
+
 pip3 install -r requirements.txt
 
+# Inicio de servicios
 
+Se creó utilizando Flask el archivo python3-rest.py
+Por defecto, usa el puerto 8085.
+
+Para correr, simplemente colocar en el shell : python python3-rest.py
+
+Actualmente hay dos rutas creadas:
+
+/reconocedor/<name> : Aqui se hace un post con la imagen desde el Backend. La respuesta es un json results que contiene label y confidence.
+  
+/entrenamiento : Aqui se hace un post para reentrenar la red neuronal.  
 
 # THEA - Reconocimiento
 
@@ -32,27 +44,13 @@ python reconocer.py --image test/matias.jpg
 
 En el comando pueden ver "test/matias.jpg". Aquí debe ir la ruta de la imagen en la que desea reconocer rostros. En el repositorio se encuentran alguna imágenes de prueba.
 
+# Troubleshooting
 
-# Web services
-
-Se creó utilizando Flask el archivo python3-rest.py
-Por defecto, usa el puerto 8085.
-
-Para correr, simplemente colocar en el shell : python3 python3-rest.py
-
-Actualmente hay dos rutas creadas:
-
-/reconocedor/<name> : Aqui se hace un post con la imagen desde el Backend. La respuesta es un json results que contiene label y confidence.
-  
-/entrenamiento : Aqui se hace un post para reentrenar la red neuronal.  
-
-Troubleshooting
-
-# Errores al utilizar la librería cv2
+ * Errores al utilizar la librería cv2:
 
 En caso de tener el error : "AttributeError: 'module' object has no attribute 'face'":
 
 http://acodigo.blogspot.com/2017/06/instalar-opencv-en-python.html
 Reinstalar la dependencia de python de opencv2
-pip3 uninstall opencv-python
-pip3 install opencv-contrib-python
+pip uninstall opencv-python
+pip install opencv-contrib-python
