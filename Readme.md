@@ -3,6 +3,7 @@
 - Pip
 
 Ejecutar en la carpeta donde se encuentra clonado el repo:
+
 pip3 freeze >> requirements.txt
 
 pip3 install -r requirements.txt
