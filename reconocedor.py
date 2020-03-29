@@ -67,7 +67,6 @@ if __name__ == '__main__':
             print("La ruta de la imagen indicada no existe")
             break
         label = ""
-        img = imutils.resize(capture, height=500)
         results = []
         for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
             results.append(dict(label=recognizer.getLabelInfo(label), confidence=confidence))
