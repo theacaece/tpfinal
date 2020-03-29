@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+import save
 import reconocedor as recon
 from flask import Flask
 from flask import request
@@ -8,8 +8,6 @@ from train import trainRecognizer
 from PIL import Image
 import io
 from flask_cors import CORS, cross_origin
-
-
 
 app = Flask(__name__)
 CORS(app)
@@ -23,6 +21,13 @@ def reconocer_service(name):
 def entrenamiento_service():
     trainRecognizer('train', showFaces=False, forceTrain=True)
     result = "Entrenamiento: OK"
+    print(result)
+    return jsonify(result)
+
+@app.route("/save",methods=['POST'])
+def save_service():
+    save.guardarImagen(request.data)
+    result = "Guardar Imagen: OK"
     print(result)
     return jsonify(result)
 

@@ -3,7 +3,6 @@ import train, detect, config, imutils, argparse
 import json
 import numpy
 
-
 # Funcion que reconoce imagen pasada por parametro
 def RecognizeFace(image, faceCascade, eyeCascade, faceSize, threshold):
     found_faces = []
@@ -32,9 +31,8 @@ def reconocer(image):
     array = numpy.frombuffer(image, dtype='uint8')
     capture = cv2.imdecode(array, -1)
 
-    img = imutils.resize(capture, height=500)
     results = []
-    for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
+    for (label, confidence, (x, y, w, h)) in RecognizeFace(capture, faceCascade, eyeCascade, faceSize, threshold):
         results.append(dict(label=recognizer.getLabelInfo(label), confidence=confidence))
     result = {"results": results}
     print(result)
