@@ -68,12 +68,12 @@ if __name__ == '__main__':
             break
         label = ""
         results = []
-        for (label, confidence, (x, y, w, h)) in RecognizeFace(img, faceCascade, eyeCascade, faceSize, threshold):
+        for (label, confidence, (x, y, w, h)) in RecognizeFace(capture, faceCascade, eyeCascade, faceSize, threshold):
             results.append(dict(label=recognizer.getLabelInfo(label), confidence=confidence))
         result = {"results": results}
         print(result)
         # Crea la ventana con el nombre 'Reconocimiento Facial' y la imagen a reconocer
-        cv2.imshow("Reconocimiento Facial", img)
+        cv2.imshow("Reconocimiento Facial", capture)
         # Comprueba si se ha pulsado la tecla 'espacio' para salir del bucle
         ch = cv2.waitKey(0)
         # 32 es el simbolo del espacio
