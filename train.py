@@ -11,7 +11,7 @@ def getLabels(a_dir):
     return [name for name in os.listdir(a_dir) if isdir(join(a_dir, name))]
 
 def supportedImg(name):
-    return name.lower().endswith('.png') or name.lower().endswith('.jpg')
+    return name.lower().endswith('.pmg') or name.lower().endswith('.jpg')
 
 def combineFaces(faces, w=100, h=100, numPerRow=5):
     small_img = []
@@ -62,7 +62,6 @@ def trainRecognizer(db_folder, trainSize=config.DEFAULT_FACE_SIZE, showFaces=Fal
 
     label_count = 0
     label_map = {}
-
     for folder in folders:
         faces = extractFaces(db_folder, folder, True)
         images.extend([cv2.resize(face, trainSize) for face in faces])
