@@ -48,7 +48,7 @@ Pillow==7.0.0
 pipfile==0.0.2
 pluggy==0.13.1
 polling2==0.4.5
-py==1.8.1
+py==1.10.0
 pyasn1==0.4.6
 pycparser==2.19
 PyJWT==1.7.1
