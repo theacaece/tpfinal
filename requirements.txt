@@ -18,7 +18,7 @@ cycler==0.10.0
 docutils==0.14
 flaky==3.6.1
 Flask==1.1.1
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 git-python==1.0.3
 gitdb2==2.0.6
 GitPython==3.0.5
